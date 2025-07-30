@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Quiz App</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(-45deg, #fceabb, #f8b500, #ff6f91, #6a89cc, #43e97b, #38f9d7);
+      background-size: 400% 400%;
+      animation: gradientBG 12s ease infinite;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      color: #222;
+    }
+
+    @keyframes gradientBG {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+
+    .container {
+      background: rgba(255,255,255,0.92);
+      margin-top: 40px;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+      width: 90%;
+      max-width: 600px;
+      transition: background 0.5s;
+    }
+
+    h2 {
+      text-align: center;
+      color: #ff6f91;
+      text-shadow: 1px 1px 8px #fff7, 0 2px 8px #f8b50044;
+    }
+
+    select, button {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      font-size: 1rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      background: linear-gradient(90deg, #fceabb 0%, #f8b500 100%);
+      color: #2c3e50;
+      font-weight: bold;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    select:focus, button:focus {
+      outline: 2px solid #ff6f91;
+    }
+
+    button.restart {
+      background: linear-gradient(90deg, #43e97b 0%, #38f9d7 100%);
+      color: #fff;
+      border: none;
+    }
+
+    .option {
+      background: linear-gradient(90deg, #f1f1f1 0%, #fceabb 100%);
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+      border: 2px solid transparent;
+      color: #222;
+      font-weight: 500;
+    }
+
+    .option:hover {
+      background: linear-gradient(90deg, #ffecd2 0%, #fcb69f 100%);
+      color: #d35400;
+    }
+
+    .correct {
+      background: linear-gradient(90deg, #43e97b 0%, #38f9d7 100%);
+      color: #fff;
+      border-color: #27ae60;
+    }
+
+    .wrong {
+      background: linear-gradient(90deg, #ff6f91 0%, #ffb86c 100%);
+      color: #fff;
+      border-color: #c0392b;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    #timer {
+      text-align: right;
+      color: #d35400;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    #result-box {
+      text-align: center;
+    }
+
+    #result-text {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin: 20px 0;
+      color: #6a89cc;
+      text-shadow: 1px 1px 8px #fff7;
+    }
+
+    button.restart {
+      background: linear-gradient(90deg, #43e97b 0%, #38f9d7 100%);
+      color: #fff;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div id="start-screen">
+        <h2>Computer Science and Enjineering (Polytecnic) </h2>
+      <h2>🎯 Start Your Quiz</h2>
+      <select id="subjectSelect" onchange="loadUnits()"></select>
+      <select id="unitSelect" onchange="showQuestionCount()" disabled></select>
+      <div id="unit-info"></div>
+      <button onclick="startQuiz()">🚀 Start Quiz</button>
+    </div>
+
+    <div id="question-screen" class="hidden">
+      <div id="timer">⏱️ 15s</div>
+      <h2 id="question-text">Question</h2>
+      <div id="options-box"></div>
+    </div>
+
+    <div id="result-box" class="hidden">
+      <h2>📊 Your Result</h2>
+      <div id="result-text"></div>
+      <button class="restart" onclick="location.reload()">🔄 Restart</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
